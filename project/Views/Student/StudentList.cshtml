@@ -1,0 +1,48 @@
+﻿@model IEnumerable<project.Models.Student>
+
+@{
+    ViewData["Title"] = "StudentList";
+
+}
+<br />
+<h1> STUDENT LIST</h1>
+<hr />
+
+<p class="float-right">
+    <a asp-action="Create_Test" class="btn btn-outline-primary"> Add New </a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Name
+            </th>
+
+            <th>
+                Email
+            </th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Email
+            </td>
+   
+            <td>
+                @Html.ActionLink("Edit", "Create", new { id=item.id, item.Name, item.Email }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Delte", "Delete", new { id=item.id}, new { @class = "btn btn-danger", onclick="return confirm('Sure?')"})
+            </td>
+        </tr>
+        }
+    </tbody>
+    </table>
